@@ -110,7 +110,8 @@ default_param = {'num_leaves': 100,
                  "bagging_fraction": 0.9 ,
                  "bagging_seed": 11,
                  "metric": 'rmse',
-                 "lambda_l1": 0.1,
+                 ## "lambda_l1": 0.1,
+                 "lambda_l1": 10.,
                  "verbosity": -1,
                  "device" : "gpu"
 }
@@ -156,10 +157,10 @@ train_function()
 
 sub_df = pd.DataFrame({"card_id":test["card_id"].values})
 sub_df["target"] = predictions
-sub_df.to_csv("submit-lgb-nacat.csv", index=False)
+sub_df.to_csv("submit-lgb-nacat-lambda10.csv", index=False)
 
 valid_df = pd.DataFrame({"card_id":train["card_id"].values})
 valid_df["target"] = oof
-valid_df.to_csv("valid-lgb-nacat.csv", index=False)
+valid_df.to_csv("valid-lgb-nacat-lambda10.csv", index=False)
 
 
